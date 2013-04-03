@@ -1,28 +1,28 @@
 require './BinaryTreeNode.rb'
 
 class BinarySearchTree
-    @@root
+    @root
     def initialize(root = nil)
-        @@root = root
+        @root = root
     end
 
     def print_in_order()
-        if(@@root == nil)
+        if(@root == nil)
             puts "Tree is empty!"
         end
         puts "Inorder Traversal of the tree is :"
-        in_order(@@root)
+        in_order(@root)
         puts ""
     end
 
     def insert(item)
         to_insert = BinaryTreeNode.new(item)
-        if(@@root == nil)
-            @@root = to_insert
+        if(@root == nil)
+            @root = to_insert
             to_insert = nil
             return
         else
-            parent = get_parent(@@root,item)
+            parent = get_parent(@root,item)
             if(parent == nil)
                 raise "Unexpected Condition met : Parent null"
             else

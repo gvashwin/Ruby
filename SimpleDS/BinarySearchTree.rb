@@ -10,7 +10,7 @@ class BinarySearchTree
         if(@@root == nil)
             puts "Tree is empty!"
         end
-        puts ""
+        puts "Inorder Traversal of the tree is :"
         in_order(@@root)
         puts ""
     end

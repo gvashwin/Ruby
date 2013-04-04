@@ -63,7 +63,21 @@ class BinarySearchTree
             end
         end
     end
+    def size()
+        if(@root == nil)
+            return 0
+        end
+        count_nodes(@root)
+    end
     private
+        def count_nodes(currNode)
+            if(currNode == nil)
+                return 0 
+            end
+           return 1 \
+               + count_nodes(currNode.left) \
+               + count_nodes(currNode.right)
+        end 
 
         def level_order(currNode)
             if(currNode == nil)

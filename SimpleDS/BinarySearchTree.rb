@@ -76,7 +76,26 @@ class BinarySearchTree
         end
         is_bst(@root)
     end
+    def height()
+        if(@root == nil)
+            return 0
+        end
+        depth(@root)
+    end
     private
+        def depth(currNode)
+            if(currNode == nil)
+                return 0
+            end
+            1 + max(depth(currNode.left), depth(currNode.right))
+        end
+        def max(i,j)
+            if (i > j)
+                return i
+            else
+                return j
+            end
+        end
         def is_bst(currNode)
             if(currNode == nil)
                 return true

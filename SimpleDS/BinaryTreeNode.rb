@@ -7,13 +7,13 @@ class BinaryTreeNode
     end
     def to_s
         if (left == nil and right == nil)
-            "Nil#{left}<-:#{value}:->#{right}Nil"
+            "~<-:#{value}:->~\n"
         elsif (left != nil and right == nil)
-            "#{left}<-:#{value}:->#{right}Nil"
+            "#{left.value}<-:#{value}:->~\n"
         elsif (left == nil and right != nil)
-            "#Nil{left}<-:#{value}:->#{right}"
+            "~<-:#{value}:->#{right.value}\n"
         else
-            "#{left}<-:#{value}:->#{right}"
+            "#{left.value}<-:#{value}:->#{right.value} \n"
         end
     end 
 end

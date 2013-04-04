@@ -88,9 +88,9 @@ class BinarySearchTree
                 return nil
             else
                 if (val < currNode.value  and currNode.left != nil)
-                    getParent(currNode.left, val)
+                    get_parent(currNode.left, val)
                 elsif (val > currNode.value  and currNode.right != nil)
-                    getParent(currNode.right, val)
+                    get_parent(currNode.right, val)
                 else
                     return currNode
                 end

@@ -23,6 +23,14 @@ class BinarySearchTree
         pre_order(@root)
         puts ""
     end
+    def print_post_order()
+        if(@root == nil)
+            puts "Tree is empty!"
+        end
+        puts "Post-Order Traversal of the tree is :"
+        post_order(@root)
+        puts ""
+    end
 
     def insert(item)
         to_insert = BinaryTreeNode.new(item)
@@ -75,6 +83,14 @@ class BinarySearchTree
             print "#{currNode.value} "
             pre_order(currNode.left)
             pre_order(currNode.right)
+        end
+        def post_order(currNode)
+            if(currNode == nil)
+                return
+            end
+            post_order(currNode.left)
+            post_order(currNode.right)
+            print "#{currNode.value} "
         end
 
 

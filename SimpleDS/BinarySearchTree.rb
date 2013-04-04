@@ -9,6 +9,7 @@ class BinarySearchTree
     def print_in_order()
         if(@root == nil)
             puts "Tree is empty!"
+            return
         end
         puts "Inorder Traversal of the tree is :"
         in_order(@root)
@@ -18,6 +19,7 @@ class BinarySearchTree
     def print_pre_order()
         if(@root == nil)
             puts "Tree is empty!"
+            return
         end
         puts "Pre-Order Traversal of the tree is :"
         pre_order(@root)
@@ -26,12 +28,22 @@ class BinarySearchTree
     def print_post_order()
         if(@root == nil)
             puts "Tree is empty!"
+            return
         end
         puts "Post-Order Traversal of the tree is :"
         post_order(@root)
         puts ""
     end
 
+    def print_tree()
+        if(@root == nil)
+            puts "Tree is empty!"
+            return
+        end
+        puts "The Tree is :"
+        level_order(@root)
+        puts ""
+    end
     def insert(item)
         to_insert = BinaryTreeNode.new(item)
         if(@root == nil)
@@ -52,7 +64,25 @@ class BinarySearchTree
         end
     end
     private
-    
+
+        def level_order(currNode)
+            if(currNode == nil)
+                return
+            end
+            nodeQ = []
+            nodeQ.push(currNode)
+            while(!nodeQ.empty?)
+                tmpNode = nodeQ.shift()
+                puts "#{tmpNode}"
+                if(tmpNode.left != nil)
+                    nodeQ.push(tmpNode.left)
+                end
+                if(tmpNode.right != nil)
+                    nodeQ.push(tmpNode.right)
+                end
+            end
+        end
+
         def get_parent(currNode, val)
             if(val == nil || currNode == nil)
                 return nil

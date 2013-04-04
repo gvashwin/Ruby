@@ -69,7 +69,23 @@ class BinarySearchTree
         end
         count_nodes(@root)
     end
+
+    def isBst?()
+        if(@root == nil)
+            return true
+        end
+        is_bst(@root)
+    end
     private
+        def is_bst(currNode)
+            if(currNode == nil)
+                return true
+            end
+            (currNode.left == nil or currNode.left.value < currNode.value) \
+                and (currNode.right == nil or currNode.right.value > currNode.value) \
+                and is_bst(currNode.left) \
+                and is_bst(currNode.right)
+        end 
         def count_nodes(currNode)
             if(currNode == nil)
                 return 0 

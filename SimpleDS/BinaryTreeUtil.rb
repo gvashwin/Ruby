@@ -113,7 +113,9 @@ module BtUtil
         if(currNode == nil)
             return false
         end
-        if((sum-currNode.value) == 0 and currNode.left == nil and currNode.right == nil)
+        if(sum-currNode.value == 0 \
+           and currNode.left == nil \
+           and currNode.right == nil)
             puts "True !!! #{currNode.value}"
             return true
         end

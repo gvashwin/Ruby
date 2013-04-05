@@ -1,7 +1,9 @@
 require './BinaryTreeNode.rb'
+require './BinaryTreeUtil.rb'
 
 class BinarySearchTree
     @root
+    include BtUtil
     def initialize(root = nil)
         @root = root
     end
@@ -67,7 +69,7 @@ class BinarySearchTree
         if(@root == nil)
             return 0
         end
-        count_nodes(@root)
+        node_count(@root)
     end
 
     def isBst?()

@@ -109,6 +109,18 @@ module BtUtil
         end
     end
 
+    def has_path_sum(currNode,sum)
+        if(currNode == nil)
+            return false
+        end
+        if((sum-currNode.value) == 0 and currNode.left == nil and currNode.right == nil)
+            puts "True !!! #{currNode.value}"
+            return true
+        end
+        has_path_sum(currNode.left, (sum - currNode.value)) \
+            or has_path_sum(currNode.right, (sum - currNode.value))
+    end 
+
  
 end
 

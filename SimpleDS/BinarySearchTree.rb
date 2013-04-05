@@ -90,5 +90,11 @@ class BinarySearchTree
         end
         find(@root, item)
     end
+    def hasPathSum?(sum)
+        if(@root == nil)
+            return false
+        end
+        has_path_sum(@root,sum)
+    end
 
 end

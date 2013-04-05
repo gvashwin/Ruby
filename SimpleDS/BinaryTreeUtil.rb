@@ -121,7 +121,19 @@ module BtUtil
         end
         has_path_sum(currNode.left, (sum - currNode.value)) \
             or has_path_sum(currNode.right, (sum - currNode.value))
-    end 
+    end
+
+   def make_mirror(currNode)
+     if(currNode == nil)
+        return nil
+     end
+     temp_left = make_mirror(currNode.left)
+     temp_right = make_mirror(currNode.right)
+     currNode.left = temp_right
+     currNode.right = temp_left
+     return currNode
+   end
+
 
  
 end

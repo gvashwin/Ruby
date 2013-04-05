@@ -96,5 +96,11 @@ class BinarySearchTree
         end
         has_path_sum(@root,sum)
     end
+    def mirror!()
+        if(@root == nil)
+            return 
+        end
+        @root = make_mirror(@root)
+    end
 
 end

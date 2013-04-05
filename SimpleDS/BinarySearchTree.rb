@@ -84,5 +84,11 @@ class BinarySearchTree
         end
         depth(@root)
     end
+    def lookup?(item)
+        if(@root == nil)
+            return false
+        end
+        find(@root, item)
+    end
 
 end

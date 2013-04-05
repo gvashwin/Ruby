@@ -95,6 +95,20 @@ module BtUtil
 		post_order(currNode.right)
 		print "#{currNode.value} "
 	end
+
+    def find(currNode, item)
+        if(currNode == nil)
+            return false
+        end
+        if(item < currNode.value)
+            find(currNode.left, item)
+        elsif(item > currNode.value)
+            find(currNode.right, item)
+        else
+            return true
+        end
+    end
+
  
 end
 

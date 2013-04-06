@@ -92,5 +92,49 @@ class List
         @length = @length - 1
         return ret
     end
+
+    def remove(item)
+        if(@head == nil and @tail ==  nil)
+            raise "List Empty - Remove Failed!"
+            return
+        end
+        found = false
+        curr_node =@head
+        prev_node = nil
+        while(curr_node != nil)
+            if(curr_node.value == item)
+                found = true
+                break
+            else
+                prev_node = curr_node
+                curr_node = curr_node.next
+            end
+        end
+        if(!found)
+            raise "Item not found - Remove Failed!"
+            return
+        else
+            @length = @length - 1
+            if(curr_node == @head)
+                new_head = @head.next
+                @head.next = nil
+                if(@tail == @head)
+                    @head = new_head
+                    @tail = new_head
+                else
+                    @head = new_head
+                end
+            elsif(curr_node == @tail)
+                prev_node.next = nil
+                @tail = prev_node
+                curr_node = nil
+            else
+                prev_node.next = curr_node.next
+                curr_node.next = nil
+                cur_node = nil
+            end
+            return true
+        end
+    end
         
 end

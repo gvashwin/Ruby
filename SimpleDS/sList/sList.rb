@@ -136,5 +136,19 @@ class List
             return true
         end
     end
+
+    def to_s
+        if(@head == nil or @tail == nil)
+            "List is empty!"
+        else
+            curr_node = @head
+            ret_s = ""
+            while(curr_node != nil)
+                ret_s = ret_s+"#{curr_node}"
+                curr_node = curr_node.next
+            end
+            return ret_s
+        end
+    end
         
 end

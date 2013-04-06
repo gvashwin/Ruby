@@ -1,6 +1,6 @@
 class SL_Node
-    attr_accessor :value :next
-    def initialize(value == nil)
+    attr_accessor :value, :next
+    def initialize(value = nil)
         @value = value
         @next = nil
     end

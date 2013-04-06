@@ -145,4 +145,30 @@ describe "List Unit Test" do
         @list.head.should == nil
         @list.tail.should == nil
     end
+
+    it "Verify printing empty list" do
+        @list = List.new
+       "#{@list}".should == "List is empty!"
+    end
+
+
+    it "Verify printing a list" do 
+        @list = List.new
+        @list.append(2)
+        @list.append(3)
+        @list.add2front(1)
+        @list.append(4)
+        @list.append(5)
+        @list.add2front(0)
+        "#{@list}".should == "0->1->2->3->4->5->NIL"
+        @list.remove(0)
+        "#{@list}".should == "1->2->3->4->5->NIL"
+        @list.removeFirst()
+        "#{@list}".should == "2->3->4->5->NIL"
+        @list.removeLast()
+        "#{@list}".should == "2->3->4->NIL"
+        @list.remove(3)
+        "#{@list}".should == "2->4->NIL"
+        
+    end
 end

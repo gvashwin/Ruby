@@ -146,5 +146,22 @@ module BtUtil
         node2return.right =  copy_tree(currNode.right)
         return node2return
     end
+
+    def same_tree?(this_node, that_node)
+        if(this_node == nil and that_node == nil)
+            return true
+        elsif(this_node !=nil and that_node == nil)
+            return false
+        elsif(this_node == nil and that_node != nil)
+            return false
+        elsif( this_node.value == that_node.value \
+              and same_tree?(this_node.left, that_node.left) \
+              and same_tree?(this_node.right, that_node.right) )
+                return true
+        else
+            return false
+        end
+    end
+
 end
 

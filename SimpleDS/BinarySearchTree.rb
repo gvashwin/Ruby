@@ -106,4 +106,7 @@ class BinarySearchTree
         end
         @root = make_mirror(@root)
     end
+    def eql?(other_tree)
+        same_tree?(@root, other_tree.root)
+    end
 end

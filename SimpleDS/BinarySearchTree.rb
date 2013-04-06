@@ -2,10 +2,14 @@ require './BinaryTreeNode.rb'
 require './BinaryTreeUtil.rb'
 
 class BinarySearchTree
-    @root
+    attr_reader :root
     include BtUtil
-    def initialize(root = nil)
-        @root = root
+    def initialize(otherTree = nil)
+        if(otherTree == nil)
+            @root = nil
+        else
+            @root = copy_tree(otherTree.root)
+        end
     end
 
     def print_in_order()
@@ -102,5 +106,4 @@ class BinarySearchTree
         end
         @root = make_mirror(@root)
     end
-
 end

@@ -1,3 +1,5 @@
+require './BinaryTreeNode.rb'
+
 module BtUtil
      def node_count(currNode)
             if(currNode == nil)
@@ -123,18 +125,26 @@ module BtUtil
             or has_path_sum(currNode.right, (sum - currNode.value))
     end
 
-   def make_mirror(currNode)
-     if(currNode == nil)
-        return nil
-     end
-     temp_left = make_mirror(currNode.left)
-     temp_right = make_mirror(currNode.right)
-     currNode.left = temp_right
-     currNode.right = temp_left
-     return currNode
-   end
+    def make_mirror(currNode)
 
+        if(currNode == nil)
+            return nil
+        end
+        temp_left = make_mirror(currNode.left)
+        temp_right = make_mirror(currNode.right)
+        currNode.left = temp_right
+        currNode.right = temp_left
+        return currNode
+    end
 
- 
+    def copy_tree(currNode)
+        if(currNode == nil)
+            return nil
+        end
+        node2return = BinaryTreeNode.new(currNode.value)
+        node2return.left =  copy_tree(currNode.left)
+        node2return.right =  copy_tree(currNode.right)
+        return node2return
+    end
 end
 

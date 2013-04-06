@@ -71,7 +71,7 @@ describe "List Unit Test" do
          expect {@list.removeLast()}.to raise_exception("List Empty - Remove Failed!")
      end
 
-    it "Verify length is correct accross all actions" do
+    it "Verify length is correct accross all remove and add methods" do
         @list = List.new
         @list.length.should == 0
        
@@ -84,7 +84,7 @@ describe "List Unit Test" do
         @list.append(12)
         @list.length.should == 3
 
-        @list.removeLast()
+        @list.removeFirst()
         @list.length.should == 2
         
         @list.removeLast()
@@ -94,4 +94,29 @@ describe "List Unit Test" do
         @list.length.should == 0
     end
 
+    it "Verify removeFirst on empty list raises execption" do 
+        @list = List.new
+        expect {@list.removeFirst()}.to raise_exception("List Empty - Remove Failed!")
+    end
+
+    it "Verify double removeFirst on single element list" do 
+        @list = List.new
+        @list.append(10)
+        @list.removeFirst().should == 10
+        expect {@list.removeLast()}.to raise_exception("List Empty - Remove Failed!")
+    end
+
+    it "Verify removeFirst on changes head(tail) refs" do 
+        @list = List.new
+        @list.append(10)
+        @list.append(20)
+        @list.removeFirst().should == 10
+        @list.head.value.should == 20
+        @list.tail.value.should == 20
+        @list.head.should == @list.tail
+        @list.removeFirst().should == 20
+        @list.head.should == nil
+        @list.tail.should == nil
+        expect {@list.removeLast()}.to raise_exception("List Empty - Remove Failed!")
+    end 
 end

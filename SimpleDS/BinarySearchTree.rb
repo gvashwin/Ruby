@@ -109,4 +109,79 @@ class BinarySearchTree
     def eql?(other_tree)
         same_tree?(@root, other_tree.root)
     end
+
+    def delete(item)
+        if(@root == nil or lookup?(item) == false)
+            return false
+        end
+        currNode = @root
+        parent = nil
+        while(currNode!= nil and currNode.value != item)
+            if(item <= currNode.value)
+                parent = currNode
+                currNode = currNode.left
+            else
+                parent = currNode
+                currNode = currNode.right
+            end
+        end
+        to_remove = currNode
+        if(to_remove.left == nil and to_remove.right == nil)
+            #Case : Leaf Node
+            if(parent.left == to_remove)
+                parent.left = nil
+            elsif(parent.right == to_remove)
+                parent.right == nil
+            else
+                raise "Parent and the node to remove are not connected"
+            end
+        elsif(to_remove.left != nil and to_remove.right == nil)
+            #Case : 1 Left Child
+             if(parent.left == to_remove)
+                parent.left = to_remove.left
+            elsif(parent.right == to_remove)
+                parent.right == to_remove.left
+            else
+                raise "Parent and the node to remove are not connected"
+            end
+        elsif(to_remove.right != nil and to_remove.right == nil)
+            #Case : 1 right Child
+            if(parent.left == to_remove)
+                parent.left = to_remove.right
+            elsif(parent.right == to_remove)
+                parent.right == to_remove.right
+            else
+                raise "Parent and the node to remove are not connected"
+            end
+        else
+            #Case : node has 2 children
+            #Find the in order successor.
+            #The inorder sucesssor is the left most child
+            #of the right subtree of the node to be removed.
+            in_order_succ_parent = nil
+            in_order_succ = to_remove.right
+            while(in_order_succ.left != nil)
+                in_order_succ_parent = in_order_succ
+                in_order_succ = in_order_succ.left
+            end
+            #Swapping the value to the node to be removed
+            #with the inorder successor's value
+            to_remove.value = in_order_succ.value
+            
+            #Removing the in order successor.
+            if(in_order_succ_parent == nil)
+                #Case : when the inorder successor
+                #is the direct right child of the node 
+                #to be removed
+                to_remove.right = nil
+                in_order_succ = nil
+            else
+                #Case : When the inorder successor
+                #is the left most node in the right
+                #sub-tree of the node to be removed.
+                in_order_succ_parent.left = nil
+                in_order_succ = nil
+            end
+        end
+    end
 end

@@ -119,4 +119,30 @@ describe "List Unit Test" do
         @list.tail.should == nil
         expect {@list.removeLast()}.to raise_exception("List Empty - Remove Failed!")
     end 
+
+    it "Verify remove() method removes the element" do 
+        @list = List.new
+        @list.append(10)
+        @list.append(20)
+        @list.remove(10).should == true
+        @list.head.value.should == 20
+        @list.head.should == @list.tail
+        @list.tail.value.should == 20
+    end
+
+    it "Verify remove() method on non-existen item raises expection" do 
+        @list = List.new
+        @list.append(10)
+        @list.append(20)
+        @list.remove(10).should == true
+        @list.head.value.should == 20
+        @list.length.should == 1
+        @list.head.should == @list.tail
+        @list.tail.value.should == 20
+        expect {@list.remove(10)}.to raise_exception("Item not found - Remove Failed!")
+        @list.remove(20).should == true
+        @list.length.should == 0
+        @list.head.should == nil
+        @list.tail.should == nil
+    end
 end

@@ -48,6 +48,7 @@ class List
     def removeLast()
         if(@head == nil and @tail ==  nil)
             raise "List Empty - Remove Failed!"
+            return
         end
         #finding the new tail
         #the node which last but 1
@@ -73,4 +74,23 @@ class List
         @length = @length - 1
         return ret
     end
+    def removeFirst()
+        if(@head == nil and @tail ==  nil)
+            raise "List Empty - Remove Failed!"
+            return
+        end
+        ret = @head.value
+        if(@head == @tail)
+            @head = nil
+            @tail = nil
+        else
+            new_head = @head.next
+            @head.next = nil
+            @head = new_head
+            new_head = nil
+        end
+        @length = @length - 1
+        return ret
+    end
+        
 end

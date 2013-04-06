@@ -1,4 +1,4 @@
-require "./sListNode.rb"
+require_relative  "sListNode.rb"
 
 class List
     attr_accessor :head, :tail

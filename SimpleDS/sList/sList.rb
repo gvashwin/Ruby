@@ -183,6 +183,39 @@ class List
         end
         return curr_node.value
     end
-
-        
+    def remove_all(item)
+        if(@head == nil or @tail == nil)
+            raise "List Empty - Remove Failed!"
+            return
+        end
+        curr_node = @head
+        prev_node = nil
+        while(curr_node != nil)
+           if(curr_node.value == item)
+               #Case item found remove the item
+               @length = @length - 1
+               if(prev_node == nil)
+                   #Case when head ref changes
+                   @head = curr_node.next
+                   curr_node.next = nil
+                   curr_node = @head
+               elsif(curr_node == @tail)
+                   #Case when tail ref changes
+                   prev_node.next = nil
+                   @tail = prev_node
+                   curr_node = curr_node.next
+               else
+                   prev_node.next = curr_node.next
+                   curr_node.next = nil
+                   curr_node = prev_node.next 
+               end
+           else
+               prev_node = curr_node
+               curr_node = curr_node.next
+           end
+        end
+        if(@head == nil)
+            @tail = nil
+        end
+    end
 end

@@ -150,5 +150,39 @@ class List
             return ret_s
         end
     end
+
+    def has_loop?
+        if(@head == nil or @tail == nil)
+            return false
+        end
+        slow = @head
+        fast = @head
+        loop_found = false
+        while(fast.next != nil and fast.next.next != nil)
+            slow = slow.next
+            fast = fast.next.next
+            if(slow == fast)
+                loop_found = true
+                break
+            end
+        end
+        return loop_found
+    end
+    def [](index)
+        if(@head == nil or @tail == nil)
+            return nil
+        end
+        if(index > length-1)
+            return nil
+        end
+        loc = 0
+        curr_node = @head
+        while(loc != index and curr_node != nil)
+            curr_node = curr_node.next
+            loc = loc + 1
+        end
+        return curr_node.value
+    end
+
         
 end

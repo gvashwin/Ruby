@@ -256,4 +256,39 @@ describe "List Unit Test" do
         @list.head.value.should == 13
         @list.length.should == 1
     end
+    it "Reversing empty list should raise exception" do 
+        @list = List.new
+        expect {@list.reverse!}.to raise_exception("List Empty!")
+    end
+    it "Reversing a single element list has not effect" do 
+        @list = List.new
+        @list.append(1)
+        @list.head.should == @list.tail
+        @list.length.should == 1
+        @list.reverse!
+        @list.head.should == @list.tail
+        @list.length.should == 1
+
+    end
+
+    it "Reversing a list should change the head and ref and reverse the list" do
+         @list = List.new
+        (1..5).each do |x|
+            @list.append(x)
+        end
+        #pre-condition
+        @list.length.should == 5 
+        @list.head.value.should == 1
+        @list.tail.value.should == 5 
+        "#{@list}".should == "1->2->3->4->5->NIL"
+        
+        @list.reverse!
+        
+        #post-condition
+        @list.length.should == 5 
+         "#{@list}".should == "5->4->3->2->1->NIL" 
+        @list.head.value.should == 5 
+        @list.tail.value.should == 1
+       
+    end
 end

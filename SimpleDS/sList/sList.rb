@@ -218,4 +218,28 @@ class List
             @tail = nil
         end
     end
+    def reverse!()
+        if(@head == nil or @tail == nil)
+            raise "List Empty!"
+            return
+        end
+        if(@head == @tail)
+            return 
+        end
+        recur_rev(@head, nil)
+    end
+
+    private
+    def recur_rev(curr_node, prev_node)
+        if(curr_node.next != nil)
+            if(prev_node == nil)
+                @tail = curr_node
+            end
+            recur_rev(curr_node.next, curr_node)
+        else
+            @head = curr_node
+        end
+        curr_node.next = prev_node
+    end
+
 end

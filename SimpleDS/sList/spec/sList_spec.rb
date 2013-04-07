@@ -171,4 +171,48 @@ describe "List Unit Test" do
         "#{@list}".should == "2->4->NIL"
         
     end
+
+    it "Empty List has no loops" do 
+        @list = List.new
+        @list.has_loop?.should == false
+    end
+    
+    it "Single element looped list has loop" do 
+        @list = List.new
+        @list.append(2)
+        @list.head.next = @list.head
+        @list.has_loop?.should == true 
+    end
+
+    it "Two element element looped list has loop" do 
+        @list = List.new
+        @list.append(2)
+        @list.append(3)
+        @list.tail.next = @list.head
+        @list.has_loop?.should == true 
+    end
+
+    it "A List with loop" do 
+        @list = List.new
+        (1..10).each do |x|
+            @list.append(x)
+        end
+        @list.tail.next = @list.head.next.next.next
+        @list.has_loop?.should == true 
+    end
+
+    it "[] Access to the list" do 
+        @list = List.new
+        @list[0].should == nil
+        @list.append(0)
+        @list[0].should == 0
+        (1..10).each do |x|
+            @list.append(x)
+        end
+        @list[0].should == 0
+        (1..10).each do |x|
+            @list[x].should == x
+        end
+        @list.length.should == 11
+    end
 end

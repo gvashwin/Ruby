@@ -215,4 +215,45 @@ describe "List Unit Test" do
         end
         @list.length.should == 11
     end
+
+    it "remove all on empty list shoudl raise exception" do 
+        @list = List.new
+        expect {@list.remove_all(5)}.to raise_exception("List Empty - Remove Failed!")
+    end
+
+    it "remove all on a list with same value should remove all nodes" do 
+        @list = List.new
+        expect {@list.remove_all(5)}.to raise_exception("List Empty - Remove Failed!")
+         (1..10).each do |x|
+            @list.append(1)
+        end
+        @list.remove_all(1)
+        @list.head.should == nil
+        @list.tail.should == nil
+        @list.length.should == 0
+    end
+    it "remove all on a list mix of values" do 
+        @list = List.new
+        expect {@list.remove_all(5)}.to raise_exception("List Empty - Remove Failed!")
+         (1..10).each do |x|
+            @list.append(1)
+        end
+        @list.append(12)
+        @list.remove_all(1)
+        @list.head.should ==  @list.tail
+        @list.tail.value.should == 12
+        @list.head.value.should == 12
+        @list.length.should == 1
+        @list = List.new
+        expect {@list.remove_all(5)}.to raise_exception("List Empty - Remove Failed!")
+         (1..10).each do |x|
+            @list.append(1)
+        end
+        @list.add2front(13)
+        @list.remove_all(1)
+        @list.head.should ==  @list.tail
+        @list.tail.value.should == 13
+        @list.head.value.should == 13
+        @list.length.should == 1
+    end
 end

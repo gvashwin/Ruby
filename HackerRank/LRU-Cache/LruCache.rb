@@ -1,4 +1,4 @@
-class LruChache
+class LruCache
     @uppper_bound
     @chache
     @map
@@ -74,7 +74,7 @@ class LruChache
 end
 
 NumOperations= gets.to_i
-lru = LruChache.new
+lru = LruCache.new
 for i in (1..NumOperations)
     line = gets.strip.split(" ")
     operation = line[0].to_s
